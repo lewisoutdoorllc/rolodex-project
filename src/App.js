@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import './App.css';
+import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
 
 class App extends Component {
   // 1: constructor runs first always in any class
@@ -42,21 +44,12 @@ class App extends Component {
     return (
       <div className='App'>
         {/* SEARCH INPUT FIELD */}
-        <input
+        <SearchBox
           className='search-box'
-          type='search'
-          placeholder='Search Monsters'
-          onChange={onSearchChange}
-        />
-        {/*  RENDERS THE MONSTER LIST */}
-        {filteredMonsters.map((monster) => {
-          return (
-            <div key={monster.id}>
-              <h1>{monster.name}</h1>
-            </div>
-          )
-        })
-        }
+          onChangeHandler={onSearchChange}
+          placeholder='Search Monsters' />
+        {/* CARD LIST */}
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
